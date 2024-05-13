@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `shop` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `shop`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: localhost    Database: shop
@@ -25,11 +23,13 @@ DROP TABLE IF EXISTS `tbl_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_users` (
-  `user_id` varchar(100) NOT NULL DEFAULT (uuid()),
-  `firstname` varchar(100) DEFAULT NULL,
-  `lastname` varchar(100) DEFAULT NULL,
+  `user_id` varchar(36) NOT NULL DEFAULT (uuid()),
+  `firstname` varchar(45) DEFAULT NULL,
+  `lastname` varchar(45) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
+  `username` varchar(45) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `created_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -40,7 +40,7 @@ CREATE TABLE `tbl_users` (
 
 LOCK TABLES `tbl_users` WRITE;
 /*!40000 ALTER TABLE `tbl_users` DISABLE KEYS */;
-INSERT INTO `tbl_users` VALUES ('233f7061-0f77-11ef-8ea8-74d4dd232d04','adrian','del prado','laguna','adrianext');
+INSERT INTO `tbl_users` VALUES ('9a357f5d-10e7-11ef-a2dc-74d4dd232d04','adrian','asd','asdsa','adrianext','$2b$10$PVPI.v06pGV8bFFOe.gmqe2S3v0NYpBwZzTeNmv34FbN6ADbsqbKu','2024-05-13 05:13:58'),('c02eb074-10e2-11ef-a2dc-74d4dd232d04','adrian','del prado','laguna','adrianext','$2b$10$Y2ylQpc6NxBuKg9aXz5.WO4lVguxm/wcZQ5LSO10KWS.YxrJpYi1q','2024-05-13 04:39:14');
 /*!40000 ALTER TABLE `tbl_users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-11 17:19:12
+-- Dump completed on 2024-05-13 17:18:59
