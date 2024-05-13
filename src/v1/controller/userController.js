@@ -1,3 +1,5 @@
+import bcrypt from "bcrypt";
+
 import User from "../model/user.js";
 
 export const getUser = async (req, res) => {
@@ -34,14 +36,22 @@ export const getUserById = async (req, res) => {
 };
 
 export const postUser = async (req, res) => {
-  const { firstname, lastname, address, username } = req.body;
+  const { firstname, lastname, address, username, password } = req.body;
 
   try {
-    if (!firstname || !lastname || !address || !username) {
+    if (!firstname || !lastname || !address || !username || !password) {
       return res.status(400).json({ error: "All fields are required" });
     }
+    //hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    await User.userPost({ firstname, lastname, address, username });
+    await User.userPost({
+      firstname,
+      lastname,
+      address,
+      username,
+      password: hashedPassword,
+    });
     res.status(201).json({ message: "User added successfully" });
   } catch (err) {
     return res.status(500).json({ error: `Database ${err.message}` });

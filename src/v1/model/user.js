@@ -1,4 +1,4 @@
-import connection from "../config/db.js";
+import connection from "./index.js";
 
 const User = {
   getAllUsers: async () => {
@@ -25,12 +25,13 @@ const User = {
     return await connection
       .promise()
       .execute(
-        "INSERT INTO tbl_users (firstname, lastname, address, username) VALUES (?, ?, ?, ?)",
+        "INSERT INTO tbl_users (firstname, lastname, address, username, password) VALUES (?, ?, ?, ?, ?)",
         [
           userData.firstname,
           userData.lastname,
           userData.address,
           userData.username,
+          userData.password,
         ]
       );
   },
