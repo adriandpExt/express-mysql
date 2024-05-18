@@ -16,32 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tbl_users`
+-- Table structure for table `tbl_task`
 --
 
-DROP TABLE IF EXISTS `tbl_users`;
+DROP TABLE IF EXISTS `tbl_task`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbl_users` (
-  `user_id` varchar(36) NOT NULL DEFAULT (uuid()),
-  `firstname` varchar(45) DEFAULT NULL,
-  `lastname` varchar(45) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `username` varchar(45) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
+CREATE TABLE `tbl_task` (
+  `id` varchar(36) NOT NULL DEFAULT (uuid()),
+  `user_id` varchar(36) NOT NULL,
+  `taskname` varchar(100) DEFAULT NULL,
+  `description` text,
   `created_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_users`
+-- Dumping data for table `tbl_task`
 --
 
-LOCK TABLES `tbl_users` WRITE;
-/*!40000 ALTER TABLE `tbl_users` DISABLE KEYS */;
-INSERT INTO `tbl_users` VALUES ('9a357f5d-10e7-11ef-a2dc-74d4dd232d04','adrian','asd','asdsa','adrianext','$2b$10$PVPI.v06pGV8bFFOe.gmqe2S3v0NYpBwZzTeNmv34FbN6ADbsqbKu','2024-05-13 05:13:58'),('c02eb074-10e2-11ef-a2dc-74d4dd232d04','adrian','del prado','laguna','adrianext','$2b$10$Y2ylQpc6NxBuKg9aXz5.WO4lVguxm/wcZQ5LSO10KWS.YxrJpYi1q','2024-05-13 04:39:14');
-/*!40000 ALTER TABLE `tbl_users` ENABLE KEYS */;
+LOCK TABLES `tbl_task` WRITE;
+/*!40000 ALTER TABLE `tbl_task` DISABLE KEYS */;
+INSERT INTO `tbl_task` VALUES ('5046c2c6-14f7-11ef-8167-74d4dd232d04','c02eb074-10e2-11ef-a2dc-74d4dd232d04','new usesssio;oi;r','retrgst','2024-05-18 09:16:30');
+/*!40000 ALTER TABLE `tbl_task` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-13 17:18:59
+-- Dump completed on 2024-05-18 17:18:19
