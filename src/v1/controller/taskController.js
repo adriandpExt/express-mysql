@@ -1,3 +1,4 @@
+import connection from "../model/index.js";
 import Task from "../model/task.js";
 
 export const getAllTasks = async (req, res) => {
@@ -53,5 +54,37 @@ export const getTaskById = async (req, res) => {
     return res.status(200).json(taskById);
   } catch (error) {
     return res.status(400).json({ error: error.message });
+  }
+};
+
+export const postTask = async (req, res) => {
+  const { taskname, description } = req.body;
+
+  try {
+    // Extract user ID from the request object (assuming it's provided)
+    const user_id = req.user.id && req.user.user_id; // Adjust this according to your user ID structure
+
+    if (!user_id) {
+      return res
+        .status(400)
+        .json({ message: "User ID is missing in the request." });
+    }
+
+    connection.query(
+      `INSERT INTO tbl_task (user_id, taskname, description) VALUES (?, ?, ?)`,
+      [user_id, taskname, description],
+      (err, result) => {
+        if (err) {
+          return res.status(400).json({ message: err.message, err: "error" });
+        } else {
+          return res.status(200).json({
+            message: "Task added successfully",
+            result,
+          });
+        }
+      }
+    );
+  } catch (error) {
+    res.status(500).json({ message: error.message, err: "errors" });
   }
 };

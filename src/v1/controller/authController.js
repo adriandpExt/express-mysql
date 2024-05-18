@@ -5,13 +5,13 @@ import Auth from "../model/auth.js";
 export const userLogin = async (req, res) => {
   const { username, password } = req.body;
 
-  try {
-    if (!username || !password) {
-      return res
-        .status(400)
-        .json({ error: "Username and password are required" });
-    }
+  if (!username || !password) {
+    return res
+      .status(400)
+      .json({ error: "Username and password are required" });
+  }
 
+  try {
     // Call the loginUser method from Auth object
     const { user, password: hashedPassword } = await Auth.loginUser(username);
 

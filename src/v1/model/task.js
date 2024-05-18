@@ -32,6 +32,21 @@ const Task = {
       throw err.message;
     }
   },
+
+  postTaskModel: async (user_id, taskname, description) => {
+    try {
+      const [result] = await connection
+        .promise()
+        .execute(
+          "INSERT INTO tbl_task (user_id, taskname, description) VALUES (?, ?, ?)",
+          [user_id, taskname, description]
+        );
+
+      return result;
+    } catch (error) {
+      throw error.message;
+    }
+  },
 };
 
 export default Task;
