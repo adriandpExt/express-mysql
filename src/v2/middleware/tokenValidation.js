@@ -5,7 +5,7 @@ const tokenValidation = (req, res, next) => {
   let authHeader = req.headers.authorization || req.headers.Authorization; //It first checks if the token is provided in the Authorization header (case-insensitive).
 
   //If a token is found in the headers and it starts with "Bearer", the code splits the header to extract the token itself.
-  if (authHeader && authHeader.startsWith("Bearer")) {
+  if (authHeader && authHeader.startsWith("Bearer ")) {
     token = authHeader.split(" ")[1];
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {

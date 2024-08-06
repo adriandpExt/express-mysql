@@ -7,9 +7,9 @@ import connection from "./config/db.js";
 import allRoutes from "./v2/routes/index.js";
 
 const app = express();
-app.use(cors());
-
 const port = process.env.PORT || 8080;
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
